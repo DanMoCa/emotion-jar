@@ -28,10 +28,10 @@ class JarApiTest extends TestCase
         ]);        
         
         $response->assertStatus(201)
-                ->assertJson(fn (AssertableJson $json) =>
+                 ->assertJson(fn (AssertableJson $json) =>
                     $json->where('name','test_jar')
-                        ->where('user_id',$user->id)
-                        ->etc()
+                         ->where('user_id',$user->id)
+                         ->etc()
             );
     }
 
@@ -48,10 +48,10 @@ class JarApiTest extends TestCase
         $response = $this->actingAs($user)->json('GET','/api/jar/'.$jar->id);
 
         $response->assertStatus(200)
-                ->assertJson(fn (AssertableJson $json) =>
+                 ->assertJson(fn (AssertableJson $json) =>
                     $json->where('name','listed_jar')
-                        ->where('user_id',$user->id)
-                        ->etc()
+                         ->where('user_id',$user->id)
+                         ->etc()
             );
     }
 
@@ -70,9 +70,9 @@ class JarApiTest extends TestCase
         ]);
 
         $response->assertStatus(200)
-                ->assertJson(fn (AssertableJson $json) =>
+                 ->assertJson(fn (AssertableJson $json) =>
                     $json->where('name','modified_jar')
-                        ->etc()
+                         ->etc()
             );
     }
 
@@ -88,9 +88,9 @@ class JarApiTest extends TestCase
         $response = $this->actingAs($user)->json('DELETE','/api/jar/'.$jar->id);
 
         $response->assertStatus(200)
-                ->assertJson(fn (AssertableJson $json) =>
+                 ->assertJson(fn (AssertableJson $json) =>
                     $json->where('message','Jar deleted successfully.')
-                            ->etc()
+                          ->etc()
             );
     }
 
@@ -107,7 +107,7 @@ class JarApiTest extends TestCase
         $response = $this->actingAs($user2)->json('GET','/api/jar/'.$jar->id);
 
         $response->assertStatus(401)
-                ->assertJsonFragment(['message'=>'unauthorized.']);
+                 ->assertJsonFragment(['message'=>'unauthorized.']);
     }
 
     /**
@@ -123,7 +123,7 @@ class JarApiTest extends TestCase
         $response = $this->actingAs($user2)->json('PUT','/api/jar/'.$jar->id,['name'=>'thief_jar']);
 
         $response->assertStatus(401)
-                ->assertJsonFragment(['message'=>'unauthorized.']);
+                 ->assertJsonFragment(['message'=>'unauthorized.']);
     }
 
     /**
@@ -140,6 +140,6 @@ class JarApiTest extends TestCase
         $response = $this->actingAs($user2)->json('DELETE','/api/jar/'.$jar->id);
 
         $response->assertStatus(401)
-                ->assertJsonFragment(['message'=>'unauthorized.']);
+                 ->assertJsonFragment(['message'=>'unauthorized.']);
     }
 }

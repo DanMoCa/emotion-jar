@@ -13,6 +13,9 @@ class CreateJarActivitiesTable extends Migration
      */
     public function up()
     {
+
+        $array = ["",""];
+
         Schema::create('jar_activities', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('jar_id');

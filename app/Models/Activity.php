@@ -9,4 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class Activity extends Model
 {
     use Uuids, HasFactory;
+
+    protected $fillable = [
+        'content',
+        'tags',
+        'user_id'
+    ];
 }
